@@ -18,6 +18,7 @@
 </script>
 
 <body>
-<button onclick="test()">zzz</button>
+<button onclick="test()">zzz
+</button>
 </body>
 </html>
