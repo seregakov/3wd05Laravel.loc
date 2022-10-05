@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\SiteController;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\MyController;
 use App\Http\Controllers\Admin\CategoryController;
@@ -26,7 +27,16 @@ Route::get('/', SiteController::class);
 Route::get('/catalog/{category_id/{product_id}}', [SiteController::class, 'product'])->name('product_page');
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'getCart'])->name('cart');
 Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('add_to_cart');
-Route::get('/test', function (\Illuminate\Http\Request $request){
+
+    Route::get('/test', function (\Illuminate\Http\Request $request){
+        $response = Http::post('https://app.sms.by/api/v1/sendQuickSMS',[
+            'token' => '',
+            'message' => '',
+            'phone' => '',
+        ]);
+        dd($response->json());
+        });
+
 
 //        $data = $request->all();
 //        return response()->json($data)->setStatusCode(401);
@@ -82,10 +92,10 @@ Route::get('/test', function (\Illuminate\Http\Request $request){
 //            }
 //        }
 
-    return view('test');
 
 
-});
+
+
 
 Route::get('/store', [SiteController::class, 'store']);
 Route::get('/catalog/{category_id}/{product_id}', [SiteController::class, 'product'])->name('category_product');
