@@ -28,14 +28,21 @@ Route::get('/catalog/{category_id/{product_id}}', [SiteController::class, 'produ
 Route::get('/cart', [\App\Http\Controllers\CartController::class, 'getCart'])->name('cart');
 Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addToCart'])->name('add_to_cart');
 
-    Route::get('/test', function (\Illuminate\Http\Request $request){
-        $response = Http::post('https://app.sms.by/api/v1/sendQuickSMS',[
-            'token' => '',
-            'message' => '',
-            'phone' => '',
-        ]);
-        dd($response->json());
-        });
+//    Route::get('/test', function (\Illuminate\Http\Request $request){
+//        $response = Http::post('https://app.sms.by/api/v1/sendQuickSMS',[
+//            'token' => '',
+//            'message' => '',
+//            'phone' => '',
+//        ]);
+//        dd($response->json());
+//        });
+
+
+Route::get('/test', function (\Illuminate\Http\Request $request) {
+    $client = Http::baseUrl('https://favqs.com/api');
+
+    //return view('test', compact('currencies'));
+});
 
 
 //        $data = $request->all();
@@ -74,7 +81,6 @@ Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addTo
 //        dd(json_decode($response->getBody()->getContents(), true));
 
 
-
 //        $response = \Illuminate\Support\Facades\Http::
 //            acceptJson()->
 //
@@ -93,10 +99,6 @@ Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addTo
 //        }
 
 
-
-
-
-
 Route::get('/store', [SiteController::class, 'store']);
 Route::get('/catalog/{category_id}/{product_id}', [SiteController::class, 'product'])->name('category_product');
 Route::get('/catalog/{category_id}', [SiteController::class, 'categoryProducts'])->name('categoryProduct');
@@ -107,7 +109,7 @@ Auth::routes();
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 
-Route::middleware('auth')->prefix('admin')->group(callback: function(){
+Route::middleware('auth')->prefix('admin')->group(callback: function () {
 
     Route::get('/', [MyController::class, 'index'])->name('')->withoutMiddleware('auth');
 
