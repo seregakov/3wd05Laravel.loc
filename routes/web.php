@@ -37,7 +37,12 @@ Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addTo
 //        dd($response->json());
 //        });
 
-
+Route::get('/test', function (\Illuminate\Http\Request $request) {
+    $client = Http::baseUrl('https://favqs.com/api/qotd');
+    $response = $client -> get('/');
+    $result = $response['quote']['author'].' - '. $response['quote']['body'];
+    dd($result);
+});
 
 //        $data = $request->all();
 //        return response()->json($data)->setStatusCode(401);
