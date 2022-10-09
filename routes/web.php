@@ -38,12 +38,6 @@ Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addTo
 //        });
 
 
-Route::get('/test', function (\Illuminate\Http\Request $request) {
-    $client = Http::baseUrl('https://favqs.com/api');
-
-    //return view('test', compact('currencies'));
-});
-
 
 //        $data = $request->all();
 //        return response()->json($data)->setStatusCode(401);
