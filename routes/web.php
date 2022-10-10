@@ -37,11 +37,21 @@ Route::post('/add_to_cart', [\App\Http\Controllers\CartController::class, 'addTo
 //        dd($response->json());
 //        });
 
+//Route::get('/test', function (\Illuminate\Http\Request $request) {
+//    $client = Http::baseUrl('https://favqs.com/api/qotd');
+//    $response = $client -> get('/');
+//    $result = $response['quote']['author'].' - '. $response['quote']['body'];
+//    dd($result);
+//
+//});
+
+
 Route::get('/test', function (\Illuminate\Http\Request $request) {
-    $client = Http::baseUrl('https://favqs.com/api/qotd');
-    $response = $client -> get('/');
-    $result = $response['quote']['author'].' - '. $response['quote']['body'];
-    dd($result);
+//    $job = new \App\Jobs\FirstJob('asdasdasdasdasdas');
+//    $job->dispatch('asdasdasdasdasdas');
+        \App\Jobs\FirstJob::dispatch('asdasdasdasdasdas');
+        \App\Jobs\FirstJob::dispatch('rtytyutyyjjyutyutyutyu')->onQueue('asdaft4545352');
+
 });
 
 //        $data = $request->all();

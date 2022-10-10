@@ -15,6 +15,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('php artisan queue:listen')
+            ->dailyAt('14:30');
         // $schedule->command('inspire')->hourly();
     }
 
